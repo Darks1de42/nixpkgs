@@ -62,6 +62,9 @@ stdenv.mkDerivation (finalAttrs: {
     substituteInPlace Meta/CMake/lagom_install_options.cmake \
       --replace-fail "\''${CMAKE_INSTALL_BINDIR}" "bin" \
       --replace-fail "\''${CMAKE_INSTALL_LIBDIR}" "lib"
+
+    substituteInPlace Meta/CMake/check_for_dependencies.cmake \
+      --replace-fail "ICU 78.2" "ICU 78.3" # FIX Hydra Failure version mismatch  https://hydra.nixos.org/build/329328135
   '';
 
   preConfigure = ''
